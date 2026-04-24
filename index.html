@@ -6,7 +6,6 @@
     <title>365自學嘻遊記遊戲樂園</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* --- 顏色與基本設定 --- */
         :root {
             --bg-color: #f5f7f8;      
             --card-bg: #ffffff;       
@@ -26,7 +25,6 @@
             line-height: 1.6;
         }
 
-        /* --- 頁首設計 --- */
         header {
             text-align: center;
             margin-bottom: 50px;
@@ -46,7 +44,6 @@
             margin: 0 auto;
         }
 
-        /* --- 分類按鈕區 --- */
         .filters {
             text-align: center;
             margin-bottom: 40px;
@@ -73,7 +70,6 @@
             color: #ffffff;
         }
 
-        /* --- 遊戲卡片網格 --- */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -153,57 +149,54 @@
             display: none !important;
         }
 
-        /* --- 贊助打賞區塊 --- */
+        /* --- 修正後：縮小精緻版的贊助區塊 --- */
         .donate-section {
             text-align: center;
-            margin-top: 80px;
-            padding: 50px 20px;
+            margin-top: 60px;
+            padding: 25px;
             background-color: #ffffff;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            max-width: 850px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            max-width: 550px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .donate-section h3 {
             color: var(--primary);
-            margin-bottom: 15px;
-            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
         }
 
         .donate-container {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            gap: 40px;
-            margin-top: 30px;
+            gap: 20px;
         }
 
         .donate-qr {
-            max-width: 220px;
+            max-width: 100px;
             height: auto;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
         }
 
         .donate-text-info {
             text-align: left;
             background-color: var(--bg-color);
-            padding: 25px;
-            border-radius: 12px;
+            padding: 12px 18px;
+            border-radius: 10px;
             color: var(--text-main);
-            font-size: 1.05rem;
-            line-height: 2;
+            font-size: 0.85rem;
+            line-height: 1.7;
         }
 
         .donate-text-info strong {
             color: var(--primary);
         }
 
-        @media (max-width: 600px) {
-            .donate-container { flex-direction: column; }
+        @media (max-width: 500px) {
+            .donate-container { flex-direction: column; gap: 10px; }
             .donate-text-info { text-align: center; }
         }
     </style>
@@ -212,7 +205,7 @@
 
     <header>
         <h1>365自學嘻遊記遊戲樂園</h1>
-        <p>蘋果老師專為 3.5 到 6 歲孩子精心研發的數位教學基地。透過有趣的遊戲互動，帶領孩子在探索中快樂學習，開啟多元邏輯力！</p>
+        <p>蘋果老師專為 3.5 到 6 歲孩子精心研發的數位教學基地。</p>
     </header>
 
     <div class="filters">
@@ -230,49 +223,13 @@
 
     <div class="grid-container" id="gameGrid">
 
-      <div class="card" data-category="set">
+        <div class="card" data-category="set">
             <img class="card-img" src="color-car.png" alt="顏色車">
             <div class="card-content">
                 <span class="tag">配對找一找</span>
                 <h3 class="card-title">顏色車 (Color Car)</h3>
-                <p class="card-desc">訓練孩子對顏色的精準配對，並在互動中建立初步的分類邏輯概念。</p>
+                <p class="card-desc">訓練孩子對顏色的精準配對，建立初步分類邏輯。</p>
                 <a href="https://playlearn365.github.io/color-car/" target="_blank" class="play-btn">開始遊戲</a>
-            </div>
-        </div>
-
-        <div class="card" data-category="quantity">
-            <img class="card-img" src="clock-hands.png" alt="時鐘撥撥看">
-            <div class="card-content">
-                <span class="tag">生活比一比</span>
-                <h3 class="card-title">時鐘撥撥看</h3>
-                <p class="card-desc">
-                    <strong>學習重點：長短針規律、手眼協調</strong><br>
-                    讓孩子自由撥動時針與分針，親身體驗整點與半點時，長短針的位置怎麼變化?。
-                </p>
-                <a href="https://playlearn365.github.io/clock-game//" target="_blank" class="play-btn">動手撥撥看</a>
-            </div>
-        </div>
-
-        <div class="card" data-category="quantity">
-            <img class="card-img" src="read-clock.png" alt="我會看時鐘">
-            <div class="card-content">
-                <span class="tag">生活比一比</span>
-                <h3 class="card-title">我會看時鐘</h3>
-                <p class="card-desc">
-                    <strong>學習重點：循序漸進的認時訓練</strong><br>
-                    貼心設計「難度分級」挑戰！帶領孩子從最基礎的整點、半點、5分鐘，一路過關斬將到「無輔助提示」的真實鐘面，無痛解鎖看時鐘的技能。
-                </p>
-                <a href="https://playlearn365.github.io/clock-read-/" target="_blank" class="play-btn">挑戰認時間</a>
-            </div>
-        </div>
-
-        <div class="card" data-category="number">
-            <img class="card-img" src="number-game.png" alt="數字分解消消樂">
-            <div class="card-content">
-                <span class="tag">快樂玩數數</span>
-                <h3 class="card-title">數字分解消消樂</h3>
-                <p class="card-desc">適合：中班～國小低年級<br>引導孩子學習數字的合成與拆解，全部消光光，建立扎實的數學基礎！</p>
-                <a href="https://playlearn365.github.io/Number-Breakdown-Puzzle/" target="_blank" class="play-btn">開始遊戲</a>
             </div>
         </div>
 
@@ -281,42 +238,48 @@
             <div class="card-content">
                 <span class="tag">快樂玩數數</span>
                 <h3 class="card-title">數感特訓：數點點</h3>
-                <p class="card-desc">
-                    <strong>學習重點：快速估量、分組合成</strong><br>
-                    這不只是數數，更是培養對數量的「直覺」。透過計時挑戰，引導孩子從逐一點數進化到整體感知，建立扎實的數學大腦雛形！
-                </p>
+                <p class="card-desc">透過計時挑戰，建立快速估量與分組合成的數學直覺。</p>
                 <a href="https://playlearn365.github.io/dot-counting-game/" target="_blank" class="play-btn">啟動數感直覺</a>
             </div>
         </div>
 
-        
+        <div class="card" data-category="number">
+            <img class="card-img" src="number-game.png" alt="數字分解消消樂">
+            <div class="card-content">
+                <span class="tag">快樂玩數數</span>
+                <h3 class="card-title">數字分解消消樂</h3>
+                <p class="card-desc">引導學習數字合成與拆解，建立扎實的數學基礎。</p>
+                <a href="https://playlearn365.github.io/Number-Breakdown-Puzzle/" target="_blank" class="play-btn">開始遊戲</a>
+            </div>
+        </div>
+
+        <div class="card" data-category="quantity">
+            <img class="card-img" src="clock-hands.png" alt="時鐘撥撥看">
+            <div class="card-content">
+                <span class="tag">生活比一比</span>
+                <h3 class="card-title">時鐘撥撥看</h3>
+                <p class="card-desc">動手撥動指針，理解大針走一圈、小針走一格的邏輯。</p>
+                <a href="https://playlearn365.github.io/clock-manipulative/" target="_blank" class="play-btn">動手撥撥看</a>
+            </div>
+        </div>
+
+        <div class="card" data-category="quantity">
+            <img class="card-img" src="read-clock.png" alt="我會看時鐘">
+            <div class="card-content">
+                <span class="tag">生活比一比</span>
+                <h3 class="card-title">我會看時鐘</h3>
+                <p class="card-desc">分級挑戰整點、半點與5分鐘，無痛解鎖看時鐘技能。</p>
+                <a href="https://playlearn365.github.io/Tell-Time-Quiz/" target="_blank" class="play-btn">挑戰認時間</a>
+            </div>
+        </div>
+
         <div class="card" data-category="language">
-            <img class="card-img" src="https://via.placeholder.com/600x400/e0e5e6/7a8b8c?text=釣魚遊戲" alt="文字釣魚">
+            <img class="card-img" src="https://via.placeholder.com/600x400?text=Word+Fishing" alt="文字釣魚">
             <div class="card-content">
                 <span class="tag">語文小天地</span>
-                <h3 class="card-title">文字釣魚 (Word Fishing)</h3>
-                <p class="card-desc">讓學習單字像釣魚一樣有趣！在愉快的節奏中提升語文認知與反應力。</p>
+                <h3 class="card-title">文字釣魚</h3>
+                <p class="card-desc">在愉快的釣魚節奏中提升語文認知與反應力。</p>
                 <a href="https://playlearn365.github.io/word-fishing-game/" target="_blank" class="play-btn">開始遊戲</a>
-            </div>
-        </div>
-
-        <div class="card" data-category="explore">
-            <img class="card-img" src="https://via.placeholder.com/600x400/e0e5e6/7a8b8c?text=打地鼠遊戲" alt="打地鼠">
-            <div class="card-content">
-                <span class="tag">超級放大鏡</span>
-                <h3 class="card-title">可愛打地鼠 (Mole Quiz)</h3>
-                <p class="card-desc">考驗孩子的手眼協調與視覺反應力，在快樂敲打中累積專注度。</p>
-                <a href="https://playlearn365.github.io/Cute-Mole-Quiz/" target="_blank" class="play-btn">開始遊戲</a>
-            </div>
-        </div>
-
-        <div class="card" data-category="story">
-            <img class="card-img" src="https://via.placeholder.com/600x400/e0e5e6/7a8b8c?text=繪本互動遊戲" alt="繪本遊戲">
-            <div class="card-content">
-                <span class="tag">繪本小劇場</span>
-                <h3 class="card-title">小小繪本冒險</h3>
-                <p class="card-desc">預計開發：結合經典故事與趣味選擇，讓孩子成為繪本裡的主人翁。</p>
-                <a href="#" class="play-btn" style="background:#ccc; cursor:default;">即將登場</a>
             </div>
         </div>
 
@@ -324,11 +287,8 @@
 
     <div class="donate-section">
         <h3>支持蘋果老師</h3>
-        <p>如果您覺得這些資源對孩子有幫助，歡迎掃描 QR Code 或複製帳號支持，您的鼓勵將成為我持續開發的動力！</p>
-        
         <div class="donate-container">
             <img class="donate-qr" src="donate-qr.png" alt="贊助QR Code">
-            
             <div class="donate-text-info">
                 銀行代碼：<strong>812</strong> (台新銀行)<br>
                 帳號：<strong>20940100010763</strong><br>
@@ -353,6 +313,5 @@
             });
         }
     </script>
-
 </body>
 </html>
