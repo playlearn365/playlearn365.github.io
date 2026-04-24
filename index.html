@@ -59,7 +59,7 @@
             background: transparent;
             border: 2px solid var(--primary);
             color: var(--primary);
-            padding: 8px 18px;
+            padding: 8px 16px;
             border-radius: 30px;
             cursor: pointer;
             font-size: 0.95rem;
@@ -115,10 +115,10 @@
             background: var(--tag-bg);
             color: var(--primary);
             font-size: 0.8rem;
-            padding: 3px 10px;
-            border-radius: 5px;
+            padding: 4px 10px;
+            border-radius: 6px;
             font-weight: 500;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .card-title {
@@ -217,59 +217,73 @@
 
     <div class="filters">
         <button class="filter-btn active" onclick="filterGames('all', this)">全部遊戲</button>
-        <button class="filter-btn" onclick="filterGames('math', this)">數感培養</button>
-        <button class="filter-btn" onclick="filterGames('logic', this)">邏輯挑戰</button>
-        <button class="filter-btn" onclick="filterGames('language', this)">語文認知</button>
-        <button class="filter-btn" onclick="filterGames('reaction', this)">反應訓練</button>
-        <button class="filter-btn" onclick="filterGames('story', this)">繪本互動</button>
-        <button class="filter-btn" onclick="filterGames('emotion', this)">情緒認知</button>
-        <button class="filter-btn" onclick="filterGames('explore', this)">觀察探索</button>
+        <button class="filter-btn" onclick="filterGames('set', this)">配對找一找</button>
+        <button class="filter-btn" onclick="filterGames('quantity', this)">生活比一比</button>
+        <button class="filter-btn" onclick="filterGames('number', this)">快樂玩數數</button>
+        <button class="filter-btn" onclick="filterGames('shape', this)">形狀變變變</button>
+        <button class="filter-btn" onclick="filterGames('language', this)">語文小天地</button>
+        <button class="filter-btn" onclick="filterGames('explore', this)">超級放大鏡</button>
+        <button class="filter-btn" onclick="filterGames('emotion', this)">心情小寶石</button>
+        <button class="filter-btn" onclick="filterGames('story', this)">繪本小劇場</button>
+        <button class="filter-btn" onclick="filterGames('life', this)">生活小幫手</button>
     </div>
 
     <div class="grid-container" id="gameGrid">
 
-        <div class="card" data-category="math">
-
-            <img class="card-img" src="number-game.png" alt="數字分解消消樂">
-
-            <div class="card-content">
-
-                <span class="tag">數感培養</span>
-
-                <h3 class="card-title">數字分解消消樂</h3>
-
-                <p class="card-desc">適合：中班～國小低年級<br>引導孩子學習數字的合成與拆解，全部消光光，建立扎實的數學基礎！</p>
-
-                <a href="https://playlearn365.github.io/Number-Breakdown-Puzzle/" target="_blank" class="play-btn">開始遊戲</a>
-
-            </div>
-
-        </div>
-
-        <div class="card" data-category="logic">
+        <div class="card" data-category="set">
             <img class="card-img" src="https://via.placeholder.com/600x400/e0e5e6/7a8b8c?text=顏色車遊戲" alt="顏色車">
             <div class="card-content">
-                <span class="tag">邏輯挑戰</span>
+                <span class="tag">配對找一找</span>
                 <h3 class="card-title">顏色車 (Color Car)</h3>
                 <p class="card-desc">訓練孩子對顏色的精準配對，並在互動中建立初步的分類邏輯概念。</p>
                 <a href="https://playlearn365.github.io/color-car/" target="_blank" class="play-btn">開始遊戲</a>
             </div>
         </div>
 
+        <div class="card" data-category="quantity">
+            <img class="card-img" src="https://via.placeholder.com/600x400/e0e5e6/7a8b8c?text=時鐘撥撥看" alt="時鐘撥撥看">
+            <div class="card-content">
+                <span class="tag">生活比一比</span>
+                <h3 class="card-title">時鐘撥撥看</h3>
+                <p class="card-desc">適合：中班～大班<br>讓孩子動手操作時針與分針，在互動中理解長短針的運作規律與空間感。</p>
+                <a href="#" target="_blank" class="play-btn">開始遊戲</a>
+            </div>
+        </div>
+
+        <div class="card" data-category="quantity">
+            <img class="card-img" src="https://via.placeholder.com/600x400/e0e5e6/7a8b8c?text=現在幾點鐘" alt="現在幾點鐘">
+            <div class="card-content">
+                <span class="tag">生活比一比</span>
+                <h3 class="card-title">現在幾點鐘</h3>
+                <p class="card-desc">適合：大班～國小低年級<br>結合日常生活情境，引導孩子學習看懂整點與半點，建立初步的時間觀念！</p>
+                <a href="#" target="_blank" class="play-btn">開始遊戲</a>
+            </div>
+        </div>
+
+        <div class="card" data-category="number">
+            <img class="card-img" src="number-game.png" alt="數字分解消消樂">
+            <div class="card-content">
+                <span class="tag">快樂玩數數</span>
+                <h3 class="card-title">數字分解消消樂</h3>
+                <p class="card-desc">適合：中班～國小低年級<br>引導孩子學習數字的合成與拆解，全部消光光，建立扎實的數學基礎！</p>
+                <a href="https://playlearn365.github.io/Number-Breakdown-Puzzle/" target="_blank" class="play-btn">開始遊戲</a>
+            </div>
+        </div>
+
         <div class="card" data-category="language">
             <img class="card-img" src="https://via.placeholder.com/600x400/e0e5e6/7a8b8c?text=釣魚遊戲" alt="文字釣魚">
             <div class="card-content">
-                <span class="tag">語文認知</span>
+                <span class="tag">語文小天地</span>
                 <h3 class="card-title">文字釣魚 (Word Fishing)</h3>
                 <p class="card-desc">讓學習單字像釣魚一樣有趣！在愉快的節奏中提升語文認知與反應力。</p>
                 <a href="https://playlearn365.github.io/word-fishing-game/" target="_blank" class="play-btn">開始遊戲</a>
             </div>
         </div>
 
-        <div class="card" data-category="reaction">
+        <div class="card" data-category="explore">
             <img class="card-img" src="https://via.placeholder.com/600x400/e0e5e6/7a8b8c?text=打地鼠遊戲" alt="打地鼠">
             <div class="card-content">
-                <span class="tag">反應訓練</span>
+                <span class="tag">超級放大鏡</span>
                 <h3 class="card-title">可愛打地鼠 (Mole Quiz)</h3>
                 <p class="card-desc">考驗孩子的手眼協調與視覺反應力，在快樂敲打中累積專注度。</p>
                 <a href="https://playlearn365.github.io/Cute-Mole-Quiz/" target="_blank" class="play-btn">開始遊戲</a>
@@ -279,7 +293,7 @@
         <div class="card" data-category="story">
             <img class="card-img" src="https://via.placeholder.com/600x400/e0e5e6/7a8b8c?text=繪本互動遊戲" alt="繪本遊戲">
             <div class="card-content">
-                <span class="tag">繪本互動</span>
+                <span class="tag">繪本小劇場</span>
                 <h3 class="card-title">小小繪本冒險</h3>
                 <p class="card-desc">預計開發：結合經典故事與趣味選擇，讓孩子成為繪本裡的主人翁。</p>
                 <a href="#" class="play-btn" style="background:#ccc; cursor:default;">即將登場</a>
@@ -290,7 +304,7 @@
 
     <div class="donate-section">
         <h3>支持蘋果老師</h3>
-        <p>如果您覺得這些資源對孩子有幫助，歡迎掃描 QR Code 或複製帳號支持，讓創作之路更長遠！</p>
+        <p>如果您覺得這些資源對孩子有幫助，歡迎掃描 QR Code 或複製帳號支持，您的鼓勵將成為我持續開發的動力！</p>
         
         <div class="donate-container">
             <img class="donate-qr" src="donate-qr.png" alt="贊助QR Code">
