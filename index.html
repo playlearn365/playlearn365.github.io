@@ -6,15 +6,15 @@
     <title>365自學嘻遊記遊戲樂園</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* --- 顏色與基本設定 (冷色調極簡風) --- */
+        /* --- 顏色與基本設定 --- */
         :root {
-            --bg-color: #f5f7f8;      /* 背景冷灰色 */
-            --card-bg: #ffffff;       /* 卡片純白 */
-            --primary: #638889;       /* 主色：莫蘭迪冷綠/藍 */
+            --bg-color: #f5f7f8;      
+            --card-bg: #ffffff;       
+            --primary: #638889;       
             --primary-hover: #4e6e6f; 
-            --text-main: #333333;     /* 主要文字 */
-            --text-sub: #7a8b8c;      /* 次要文字 */
-            --tag-bg: #e9eff0;        /* 標籤背景 */
+            --text-main: #333333;     
+            --text-sub: #7a8b8c;      
+            --tag-bg: #e9eff0;        
         }
 
         body {
@@ -34,15 +34,15 @@
 
         h1 {
             color: var(--primary);
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin-bottom: 10px;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
         header p {
             color: var(--text-sub);
             font-size: 1.1rem;
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto;
         }
 
@@ -50,17 +50,20 @@
         .filters {
             text-align: center;
             margin-bottom: 40px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .filter-btn {
             background: transparent;
             border: 2px solid var(--primary);
             color: var(--primary);
-            padding: 8px 20px;
+            padding: 8px 18px;
             border-radius: 30px;
             cursor: pointer;
-            font-size: 1rem;
-            margin: 0 5px 10px 5px;
+            font-size: 0.95rem;
+            margin: 5px;
             transition: all 0.3s ease;
             font-weight: 500;
         }
@@ -70,11 +73,11 @@
             color: #ffffff;
         }
 
-        /* --- 遊戲卡片網格 (自適應排版) --- */
+        /* --- 遊戲卡片網格 --- */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
             max-width: 1100px;
             margin: 0 auto;
         }
@@ -83,26 +86,25 @@
             background: var(--card-bg);
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease;
             display: flex;
             flex-direction: column;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+            transform: translateY(-8px);
         }
 
         .card-img {
             width: 100%;
-            height: 180px;
+            height: 170px;
             background-color: #e0e5e6; 
             object-fit: cover;
         }
 
         .card-content {
-            padding: 24px;
+            padding: 20px;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -112,22 +114,22 @@
             align-self: flex-start;
             background: var(--tag-bg);
             color: var(--primary);
-            font-size: 0.85rem;
-            padding: 4px 10px;
-            border-radius: 6px;
+            font-size: 0.8rem;
+            padding: 3px 10px;
+            border-radius: 5px;
             font-weight: 500;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .card-title {
-            margin: 0 0 8px 0;
-            font-size: 1.3rem;
+            margin: 0 0 10px 0;
+            font-size: 1.25rem;
         }
 
         .card-desc {
             color: var(--text-sub);
             font-size: 0.95rem;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             flex-grow: 1;
         }
 
@@ -137,8 +139,8 @@
             background: var(--primary);
             color: #ffffff;
             text-decoration: none;
-            padding: 12px;
-            border-radius: 10px;
+            padding: 10px;
+            border-radius: 8px;
             font-weight: bold;
             transition: background 0.3s ease;
         }
@@ -154,19 +156,19 @@
         /* --- 贊助打賞區塊 --- */
         .donate-section {
             text-align: center;
-            margin-top: 60px;
-            padding: 40px;
+            margin-top: 80px;
+            padding: 50px 20px;
             background-color: #ffffff;
-            border-radius: 16px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
-            max-width: 800px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            max-width: 850px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .donate-section h3 {
             color: var(--primary);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             font-size: 1.8rem;
         }
 
@@ -175,38 +177,34 @@
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            gap: 30px;
+            gap: 40px;
             margin-top: 30px;
         }
 
         .donate-qr {
-            max-width: 250px;
+            max-width: 220px;
             height: auto;
-            border-radius: 10px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .donate-text-info {
             text-align: left;
             background-color: var(--bg-color);
-            padding: 20px;
-            border-radius: 10px;
+            padding: 25px;
+            border-radius: 12px;
             color: var(--text-main);
-            font-family: monospace; /* 便於區分數字 */
-            line-height: 1.8;
+            font-size: 1.05rem;
+            line-height: 2;
         }
 
         .donate-text-info strong {
             color: var(--primary);
         }
 
-        /* 手機板排版調整 */
         @media (max-width: 600px) {
-            .donate-container {
-                flex-direction: column;
-            }
-            .donate-text-info {
-                text-align: center;
-            }
+            .donate-container { flex-direction: column; }
+            .donate-text-info { text-align: center; }
         }
     </style>
 </head>
@@ -214,45 +212,59 @@
 
     <header>
         <h1>365自學嘻遊記遊戲樂園</h1>
-        <p>蘋果老師專為 3.5 到 6 歲孩子設計的互動學習資源。邀請家長每天花 10 分鐘，陪伴孩子在遊戲中培養多元邏輯與認知！</p>
+        <p>蘋果老師專為 3.5 到 6 歲孩子精心研發的數位教學基地。透過有趣的遊戲互動，帶領孩子在探索中快樂學習，開啟多元邏輯力！</p>
     </header>
 
     <div class="filters">
         <button class="filter-btn active" onclick="filterGames('all', this)">全部遊戲</button>
+        <button class="filter-btn" onclick="filterGames('math', this)">數感培養</button>
         <button class="filter-btn" onclick="filterGames('logic', this)">邏輯挑戰</button>
         <button class="filter-btn" onclick="filterGames('language', this)">語文認知</button>
         <button class="filter-btn" onclick="filterGames('reaction', this)">反應訓練</button>
+        <button class="filter-btn" onclick="filterGames('story', this)">繪本互動</button>
+        <button class="filter-btn" onclick="filterGames('emotion', this)">情緒認知</button>
+        <button class="filter-btn" onclick="filterGames('explore', this)">觀察探索</button>
     </div>
 
     <div class="grid-container" id="gameGrid">
 
         <div class="card" data-category="logic">
-            <img class="card-img" src="https://via.placeholder.com/600x400/e0e5e6/7a8b8c?text=顏色車遊戲截圖" alt="顏色車">
+            <img class="card-img" src="https://via.placeholder.com/600x400/e0e5e6/7a8b8c?text=顏色車遊戲" alt="顏色車">
             <div class="card-content">
                 <span class="tag">邏輯挑戰</span>
-                <h3 class="card-title">顏色車遊戲 (Color Car)</h3>
-                <p class="card-desc">適合：小班～中班<br>透過活潑的車子互動，訓練孩子對顏色與基礎邏輯的配對與認知能力。</p>
+                <h3 class="card-title">顏色車 (Color Car)</h3>
+                <p class="card-desc">訓練孩子對顏色的精準配對，並在互動中建立初步的分類邏輯概念。</p>
                 <a href="https://playlearn365.github.io/color-car/" target="_blank" class="play-btn">開始遊戲</a>
             </div>
         </div>
 
         <div class="card" data-category="language">
-            <img class="card-img" src="https://via.placeholder.com/600x400/e0e5e6/7a8b8c?text=釣魚遊戲截圖" alt="釣魚遊戲">
+            <img class="card-img" src="https://via.placeholder.com/600x400/e0e5e6/7a8b8c?text=釣魚遊戲" alt="文字釣魚">
             <div class="card-content">
                 <span class="tag">語文認知</span>
                 <h3 class="card-title">文字釣魚 (Word Fishing)</h3>
-                <p class="card-desc">適合：中班～大班<br>結合釣魚的趣味性，讓孩子在玩樂中自然而然地學習單字與認知。</p>
+                <p class="card-desc">讓學習單字像釣魚一樣有趣！在愉快的節奏中提升語文認知與反應力。</p>
                 <a href="https://playlearn365.github.io/word-fishing-game/" target="_blank" class="play-btn">開始遊戲</a>
             </div>
         </div>
 
         <div class="card" data-category="reaction">
-            <img class="card-img" src="https://via.placeholder.com/600x400/e0e5e6/7a8b8c?text=打地鼠截圖" alt="可愛打地鼠">
+            <img class="card-img" src="https://via.placeholder.com/600x400/e0e5e6/7a8b8c?text=打地鼠遊戲" alt="打地鼠">
             <div class="card-content">
                 <span class="tag">反應訓練</span>
-                <h3 class="card-title">可愛打地鼠 (Cute Mole Quiz)</h3>
-                <p class="card-desc">適合：小班～大班<br>訓練孩子的手眼協調與專注力，是非常好的課後放電小遊戲。</p>
+                <h3 class="card-title">可愛打地鼠 (Mole Quiz)</h3>
+                <p class="card-desc">考驗孩子的手眼協調與視覺反應力，在快樂敲打中累積專注度。</p>
                 <a href="https://playlearn365.github.io/Cute-Mole-Quiz/" target="_blank" class="play-btn">開始遊戲</a>
+            </div>
+        </div>
+
+        <div class="card" data-category="story">
+            <img class="card-img" src="https://via.placeholder.com/600x400/e0e5e6/7a8b8c?text=繪本互動遊戲" alt="繪本遊戲">
+            <div class="card-content">
+                <span class="tag">繪本互動</span>
+                <h3 class="card-title">小小繪本冒險</h3>
+                <p class="card-desc">預計開發：結合經典故事與趣味選擇，讓孩子成為繪本裡的主人翁。</p>
+                <a href="#" class="play-btn" style="background:#ccc; cursor:default;">即將登場</a>
             </div>
         </div>
 
@@ -260,13 +272,13 @@
 
     <div class="donate-section">
         <h3>支持蘋果老師</h3>
-        <p>如果您覺得這些遊戲對孩子的發展有幫助，歡迎掃碼或複製帳號給予小額支持，您的鼓勵將成為我持續開發的動力！</p>
+        <p>如果您覺得這些資源對孩子有幫助，歡迎掃描 QR Code 或複製帳號支持，讓創作之路更長遠！</p>
         
         <div class="donate-container">
             <img class="donate-qr" src="donate-qr.png" alt="贊助QR Code">
             
             <div class="donate-text-info">
-                銀行代碼：<strong>812</strong> (台新銀行)<br>
+                銀行代碼：<strong>821</strong> (遠東商銀)<br>
                 帳號：<strong>20940100010763</strong><br>
                 戶名：<strong>新耘文化事業有限公司</strong>
             </div>
