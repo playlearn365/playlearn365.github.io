@@ -155,25 +155,58 @@
         .donate-section {
             text-align: center;
             margin-top: 60px;
-            padding-top: 40px;
-            border-top: 1px solid #e0e5e6;
+            padding: 40px;
+            background-color: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .donate-section h3 {
             color: var(--primary);
             margin-bottom: 10px;
+            font-size: 1.8rem;
         }
 
-        .donate-section p {
-            color: var(--text-sub);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
+        .donate-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 30px;
         }
 
         .donate-qr {
-            max-width: 200px;
+            max-width: 250px;
+            height: auto;
             border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .donate-text-info {
+            text-align: left;
+            background-color: var(--bg-color);
+            padding: 20px;
+            border-radius: 10px;
+            color: var(--text-main);
+            font-family: monospace; /* 便於區分數字 */
+            line-height: 1.8;
+        }
+
+        .donate-text-info strong {
+            color: var(--primary);
+        }
+
+        /* 手機板排版調整 */
+        @media (max-width: 600px) {
+            .donate-container {
+                flex-direction: column;
+            }
+            .donate-text-info {
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -197,7 +230,7 @@
             <img class="card-img" src="https://via.placeholder.com/600x400/e0e5e6/7a8b8c?text=顏色車遊戲截圖" alt="顏色車">
             <div class="card-content">
                 <span class="tag">邏輯挑戰</span>
-                <h3 class="card-title">顏色車 (Color Car)</h3>
+                <h3 class="card-title">顏色車遊戲 (Color Car)</h3>
                 <p class="card-desc">適合：小班～中班<br>透過活潑的車子互動，訓練孩子對顏色與基礎邏輯的配對與認知能力。</p>
                 <a href="https://playlearn365.github.io/color-car/" target="_blank" class="play-btn">開始遊戲</a>
             </div>
@@ -207,7 +240,7 @@
             <img class="card-img" src="https://via.placeholder.com/600x400/e0e5e6/7a8b8c?text=釣魚遊戲截圖" alt="釣魚遊戲">
             <div class="card-content">
                 <span class="tag">語文認知</span>
-                <h3 class="card-title">釣魚遊戲 (Word Fishing)</h3>
+                <h3 class="card-title">文字釣魚 (Word Fishing)</h3>
                 <p class="card-desc">適合：中班～大班<br>結合釣魚的趣味性，讓孩子在玩樂中自然而然地學習單字與認知。</p>
                 <a href="https://playlearn365.github.io/word-fishing-game/" target="_blank" class="play-btn">開始遊戲</a>
             </div>
@@ -227,8 +260,17 @@
 
     <div class="donate-section">
         <h3>支持蘋果老師</h3>
-        <p>如果您覺得這些遊戲對孩子的發展有幫助，歡迎掃碼給予小額支持，這將成為我持續開發的動力！</p>
-        <img class="donate-qr" src="https://via.placeholder.com/200x200/e0e5e6/7a8b8c?text=您的收款QR+Code" alt="贊助QR Code">
+        <p>如果您覺得這些遊戲對孩子的發展有幫助，歡迎掃碼或複製帳號給予小額支持，您的鼓勵將成為我持續開發的動力！</p>
+        
+        <div class="donate-container">
+            <img class="donate-qr" src="donate-qr.png" alt="贊助QR Code">
+            
+            <div class="donate-text-info">
+                銀行代碼：<strong>821</strong> (遠東商銀)<br>
+                帳號：<strong>20940100010763</strong><br>
+                戶名：<strong>新耘文化事業有限公司</strong>
+            </div>
+        </div>
     </div>
 
     <script>
