@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>365自學嘻遊記數學遊戲樂園</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- 顏色與基本設定 (冷色調極簡風) --- */
+        :root {
+            --bg-color: #f5f7f8;      /* 背景冷灰色 */
+            --card-bg: #ffffff;       /* 卡片純白 */
+            --primary: #638889;       /* 主色：莫蘭迪冷綠/藍 */
+            --primary-hover: #4e6e6f; 
+            --text-main: #333333;     /* 主要文字 */
+            --text-sub: #7a8b8c;      /* 次要文字 */
+            --tag-bg: #e9eff0;        /* 標籤背景 */
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        /* --- 頁首設計 --- */
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            color: var(--text-sub);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- 分類按鈕區 --- */
+        .filters {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0 5px 10px 5px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        /* --- 遊戲卡片網格 (自適應排版) --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 180px;
+            background-color: #e0e5e6; 
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 24px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tag {
+            align-self: flex-start;
+            background: var(--tag-bg);
+            color: var(--primary);
+            font-size: 0.85rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .card-title {
+            margin: 0 0 8px 0;
+            font-size: 1.3rem;
+        }
+
+        .card-desc {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .play-btn {
+            display: block;
+            text-align: center;
+            background: var(--primary);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .play-btn:hover {
+            background: var(--primary-hover);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* --- 贊助打賞區塊 --- */
+        .donate-section {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid #e0e5e6;
+        }
+
+        .donate-section h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .donate-section p {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .donate-qr {
+            max-width: 200px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>365自學嘻遊記數學遊戲樂園</h1>
+        <p>蘋果老師專為 3.5 到 6 歲孩子設計的互動學習資源。邀請家長每天花 10 分鐘，陪伴孩子在遊戲中培養數學邏輯與直覺！</p>
+    </header>
+
+    <div class="filters">
+        <button class="filter-btn active" onclick="filterGames('all', this)">全部遊戲</button>
+        <button class="filter-btn" onclick="filterGames('logic', this)">邏輯挑戰</button>
+        <button class="filter-btn" onclick="filterGames('language', this)">語文認知</button>
+        <button class="filter-btn" onclick="filterGames('reaction', this)">反應訓練</button>
+    </div>
+
+    <div class="grid-container" id="gameGrid">
+
+        <div class="card" data-category="logic">
+            <img class="card-img" src="https://via.placeholder.com/600x400/e0e5e6/7a8b8c?text=顏色車遊戲截圖" alt="顏色車">
+            <div class="card-content">
+                <span class="tag">邏輯挑戰</span>
+                <h3 class="card-title">顏色車 (Color Car)</h3>
+                <p class="card-desc">適合：小班～中班<br>透過活潑的車子互動，訓練孩子對顏色與基礎邏輯的配對與認知能力。</p>
+                <a href="https://playlearn365.github.io/color-car/" target="_blank" class="play-btn">開始遊戲</a>
+            </div>
+        </div>
+
+        <div class="card" data-category="language">
+            <img class="card-img" src="https://via.placeholder.com/600x400/e0e5e6/7a8b8c?text=釣魚遊戲截圖" alt="釣魚遊戲">
+            <div class="card-content">
+                <span class="tag">語文認知</span>
+                <h3 class="card-title">釣魚遊戲 (Word Fishing)</h3>
+                <p class="card-desc">適合：中班～大班<br>結合釣魚的趣味性，讓孩子在玩樂中自然而然地學習單字與認知。</p>
+                <a href="https://playlearn365.github.io/word-fishing-game/" target="_blank" class="play-btn">開始遊戲</a>
+            </div>
+        </div>
+
+        <div class="card" data-category="reaction">
+            <img class="card-img" src="https://via.placeholder.com/600x400/e0e5e6/7a8b8c?text=打地鼠截圖" alt="可愛打地鼠">
+            <div class="card-content">
+                <span class="tag">反應訓練</span>
+                <h3 class="card-title">可愛打地鼠 (Cute Mole Quiz)</h3>
+                <p class="card-desc">適合：小班～大班<br>訓練孩子的手眼協調與專注力，是非常好的課後放電小遊戲。</p>
+                <a href="https://playlearn365.github.io/Cute-Mole-Quiz/" target="_blank" class="play-btn">開始遊戲</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="donate-section">
+        <h3>支持蘋果老師</h3>
+        <p>如果您覺得這些遊戲對孩子的發展有幫助，歡迎掃碼給予小額支持，這將成為我持續開發的動力！</p>
+        <img class="donate-qr" src="https://via.placeholder.com/200x200/e0e5e6/7a8b8c?text=您的收款QR+Code" alt="贊助QR Code">
+    </div>
+
+    <script>
+        function filterGames(category, btnElement) {
+            let buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+
+            let cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
