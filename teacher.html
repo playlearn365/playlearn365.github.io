@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PlayLearn365 🌱 幼兒教學遊戲平台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #FFF8EE;
+      --warm-white: #FFFCF7;
+      --lang-hue: #FF7043;
+      --lang-light: #FFF3EE;
+      --lang-border: #FFCCBC;
+      --math-hue: #5C6BC0;
+      --math-light: #EEF0FF;
+      --math-border: #C5CAE9;
+      --cog-hue: #43A047;
+      --cog-light: #EEFFF0;
+      --cog-border: #C8E6C9;
+      --ai-hue: #8E24AA;
+      --ai-light: #F8EEFF;
+      --ai-border: #E1BEE7;
+      --text-dark: #2D2416;
+      --text-mid: #6B5740;
+      --text-light: #A08060;
+      --shadow-card: 0 2px 16px rgba(60,30,0,0.07);
+      --radius: 20px;
+    }
+
+    html { scroll-behavior: smooth; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', 'Noto Sans TC', sans-serif;
+      background-color: var(--cream);
+      color: var(--text-dark);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 15% 15%, #FFE0B2 0%, transparent 40%),
+        radial-gradient(circle at 85% 80%, #E8EAF6 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, #F3E5F5 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrapper { position: relative; z-index: 1; }
+
+    /* HEADER */
+    header { text-align: center; padding: 60px 24px 44px; }
+
+    .logo-row { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 14px; }
+
+    .logo-emoji { font-size: 48px; animation: sway 3s ease-in-out infinite; display: inline-block; }
+    @keyframes sway { 0%,100%{transform:rotate(-5deg)} 50%{transform:rotate(5deg)} }
+
+    h1 { font-size: clamp(2rem,5vw,3rem); font-weight: 900; letter-spacing: -0.5px; line-height: 1.1; }
+    h1 span { background: linear-gradient(135deg,#FF7043,#8E24AA); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+    .subtitle { margin-top: 12px; font-size: 1.05rem; color: var(--text-light); font-weight: 600; }
+
+    .tag-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 18px; }
+    .tag {
+      padding: 6px 16px; border-radius: 99px; font-size: 0.85rem; font-weight: 700;
+      text-decoration: none; cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      display: inline-block;
+    }
+    .tag:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+    .tag:active { transform: translateY(0); }
+    .tag-lang { background:var(--lang-light); color:var(--lang-hue); border:1.5px solid var(--lang-border); }
+    .tag-math { background:var(--math-light); color:var(--math-hue); border:1.5px solid var(--math-border); }
+    .tag-cog  { background:var(--cog-light);  color:var(--cog-hue);  border:1.5px solid var(--cog-border);  }
+    .tag-ai   { background:var(--ai-light);   color:var(--ai-hue);   border:1.5px solid var(--ai-border);   }
+
+    /* NOTICE */
+    .notice { max-width: 1100px; margin: 0 auto 12px; padding: 0 24px; }
+    .notice-box {
+      background: #FFFDE7; border: 1.5px dashed #FFD54F;
+      border-radius: 12px; padding: 12px 18px;
+      font-size: 0.85rem; color: #795548; font-weight: 600; line-height: 1.7;
+    }
+    .notice-box strong { color: #E65100; }
+    .notice-box code { background:#FFF9C4; padding:1px 6px; border-radius:4px; font-size:0.82rem; }
+
+    /* MAIN */
+    main { max-width: 1100px; margin: 0 auto; padding: 0 24px 80px; display: flex; flex-direction: column; gap: 52px; }
+
+    /* STATS */
+    .stats-bar {
+      display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
+      background: var(--warm-white); border-radius: var(--radius);
+      padding: 26px 40px; box-shadow: var(--shadow-card); border: 1.5px solid #F0E6D6;
+    }
+    .stat-item { text-align: center; }
+    .stat-num { font-size: 2rem; font-weight: 900; line-height: 1; }
+    .stat-label { font-size: 0.82rem; color: var(--text-light); font-weight: 700; margin-top: 4px; }
+    .stat-lang .stat-num { color: var(--lang-hue); }
+    .stat-math .stat-num { color: var(--math-hue); }
+    .stat-cog  .stat-num { color: var(--cog-hue);  }
+    .stat-ai   .stat-num { color: var(--ai-hue);   }
+
+    /* SECTION HEADER */
+    .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+    .section-icon {
+      width: 54px; height: 54px; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; flex-shrink: 0; box-shadow: var(--shadow-card);
+    }
+    .section-icon-lang { background: linear-gradient(135deg,#FF8A65,#FF7043); }
+    .section-icon-math { background: linear-gradient(135deg,#7986CB,#5C6BC0); }
+    .section-icon-cog  { background: linear-gradient(135deg,#66BB6A,#43A047); }
+    .section-icon-ai   { background: linear-gradient(135deg,#AB47BC,#8E24AA); }
+    .section-title-wrap h2 { font-size: 1.45rem; font-weight: 900; }
+    .section-title-wrap p  { font-size: 0.88rem; color: var(--text-light); font-weight: 600; margin-top: 2px; }
+
+    /* CARD GRID */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 22px; }
+
+    /* CARD */
+    .card {
+      background: var(--warm-white); border-radius: var(--radius);
+      box-shadow: var(--shadow-card); text-decoration: none;
+      display: flex; flex-direction: column;
+      border: 1.5px solid transparent;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      overflow: hidden;
+      opacity: 0; transform: translateY(16px);
+      animation: fadeUp 0.4s ease forwards;
+    }
+    @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+    .card:nth-child(1){animation-delay:.05s} .card:nth-child(2){animation-delay:.1s}
+    .card:nth-child(3){animation-delay:.15s} .card:nth-child(4){animation-delay:.2s}
+    .card:nth-child(5){animation-delay:.25s} .card:nth-child(6){animation-delay:.3s}
+    .card:nth-child(7){animation-delay:.35s}
+
+    .card:hover { transform: translateY(-5px); box-shadow: 0 14px 36px rgba(60,30,0,0.13); }
+
+    .card-lang { border-color: var(--lang-border); } .card-lang:hover { border-color: var(--lang-hue); }
+    .card-math { border-color: var(--math-border); } .card-math:hover { border-color: var(--math-hue); }
+    .card-cog  { border-color: var(--cog-border);  } .card-cog:hover  { border-color: var(--cog-hue);  }
+    .card-ai   { border-color: var(--ai-border);   } .card-ai:hover   { border-color: var(--ai-hue);   }
+
+    /* TOP BAR */
+    .card-bar { height: 5px; width: 100%; flex-shrink: 0; }
+    .card-lang .card-bar { background: linear-gradient(90deg,#FF7043,#FFB300); }
+    .card-math .card-bar { background: linear-gradient(90deg,#5C6BC0,#42A5F5); }
+    .card-cog  .card-bar { background: linear-gradient(90deg,#43A047,#00BCD4); }
+    .card-ai   .card-bar { background: linear-gradient(90deg,#8E24AA,#E91E63); }
+
+    /* IMAGE */
+    .card-img { width:100%; aspect-ratio:16/9; object-fit:cover; display:block; }
+
+    .card-img-placeholder {
+      width:100%; aspect-ratio:16/9;
+      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+      font-size:38px;
+    }
+    .card-lang .card-img-placeholder { background: #FFF3EE; }
+    .card-math .card-img-placeholder { background: #EEF0FF; }
+    .card-cog  .card-img-placeholder { background: #EEFFF0; }
+    .card-ai   .card-img-placeholder { background: #F8EEFF; }
+    .card-img-placeholder .ph-hint { font-size:0.72rem; font-weight:700; opacity:0.4; font-family:'Noto Sans TC',sans-serif; }
+
+    /* BODY */
+    .card-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+
+    .card-top-row { display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
+    .card-name { font-size:1.05rem; font-weight:900; color:var(--text-dark); line-height:1.3; }
+
+    .card-badge { padding:3px 10px; border-radius:99px; font-size:0.72rem; font-weight:700; white-space:nowrap; flex-shrink:0; }
+    .card-lang .card-badge { background:var(--lang-light); color:var(--lang-hue); }
+    .card-math .card-badge { background:var(--math-light); color:var(--math-hue); }
+    .card-cog  .card-badge { background:var(--cog-light);  color:var(--cog-hue);  }
+    .card-ai   .card-badge { background:var(--ai-light);   color:var(--ai-hue);   }
+
+    /* DESC */
+    .card-desc { display:flex; flex-direction:column; gap:6px; }
+    .desc-row { display:flex; gap:6px; font-size:0.83rem; font-weight:600; color:var(--text-mid); line-height:1.5; }
+    .desc-label { font-weight:800; color:var(--text-dark); white-space:nowrap; min-width:52px; }
+
+    /* BUTTON */
+    .card-btn {
+      display:flex; align-items:center; justify-content:center; gap:6px;
+      padding:10px; border-radius:12px; font-size:0.88rem; font-weight:800;
+      margin-top:auto; transition:opacity 0.2s;
+    }
+    .card-btn:hover { opacity:0.8; }
+    .card-lang .card-btn { background:var(--lang-light); color:var(--lang-hue); }
+    .card-math .card-btn { background:var(--math-light); color:var(--math-hue); }
+    .card-cog  .card-btn { background:var(--cog-light);  color:var(--cog-hue);  }
+    .card-ai   .card-btn { background:var(--ai-light);   color:var(--ai-hue);   }
+
+    /* FOOTER */
+    footer { text-align:center; padding:32px 24px; color:var(--text-light); font-size:0.85rem; font-weight:600; }
+    footer a { color:var(--lang-hue); text-decoration:none; }
+
+    @media(max-width:640px){ .card-grid{grid-template-columns:1fr} .stats-bar{gap:20px;padding:20px} }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+<header>
+  <div class="logo-row">
+    <span class="logo-emoji">🌱</span>
+    <h1>Play<span>Learn</span>365</h1>
+  </div>
+  <p class="subtitle">幼兒教學遊戲平台 ｜ 幼稚園老師 &amp; 園長專用</p>
+  <div class="tag-row">
+    <a class="tag tag-lang" href="#sec-lang">📖 語文</a>
+    <a class="tag tag-math" href="#sec-math">🔢 數學</a>
+    <a class="tag tag-cog"  href="#sec-cog">🎨 認知</a>
+    <a class="tag tag-ai"   href="#sec-ai">🤖 AI工具</a>
+  </div>
+</header>
+
+<div class="notice">
+  <div class="notice-box">
+    📁 <strong>圖片上傳說明：</strong>在 GitHub repo 建立 <code>images/</code> 資料夾，將各遊戲截圖依下方檔名上傳，網頁即自動顯示。尚未上傳的會先顯示 emoji 預留位置。
+  </div>
+</div>
+
+<main>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-item stat-lang"><div class="stat-num">7</div><div class="stat-label">📖 語文遊戲</div></div>
+    <div class="stat-item stat-math"><div class="stat-num">3</div><div class="stat-label">🔢 數學遊戲</div></div>
+    <div class="stat-item stat-cog"><div class="stat-num">3</div><div class="stat-label">🎨 認知遊戲</div></div>
+    <div class="stat-item stat-ai"><div class="stat-num">3</div><div class="stat-label">🤖 AI工具</div></div>
+  </div>
+
+  <!-- ===== 語文 ===== -->
+  <section id="sec-lang">
+    <div class="section-header">
+      <div class="section-icon section-icon-lang">📖</div>
+      <div class="section-title-wrap"><h2>語文遊戲</h2><p>注音、識字、成語，邊玩邊學</p></div>
+    </div>
+    <div class="card-grid">
+
+      <a class="card card-lang" href="https://playlearn365.github.io/maxbot/" target="_blank">
+        <div class="card-bar"></div>
+        <img class="card-img" src="images/maxbot.png" alt="麥芽糖老師"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="card-img-placeholder" style="display:none">🍬<span class="ph-hint">images/maxbot.png</span></div>
+        <div class="card-body">
+          <div class="card-top-row"><div class="card-name">🍬 麥芽糖老師</div><span class="card-badge">語文</span></div>
+          <div class="card-desc">
+            <div class="desc-row"><span class="desc-label">📅 年齡</span><span>4–6 歲</span></div>
+            <div class="desc-row"><span class="desc-label">🎮 玩法</span><span>與 AI 老師互動對話，透過問答學習語詞與表達</span></div>
+            <div class="desc-row"><span class="desc-label">🎯 目標</span><span>培養口語表達能力，擴充詞彙量，提升聆聽理解</span></div>
+          </div>
+          <div class="card-btn">▶ 開始遊戲</div>
+        </div>
+      </a>
+
+      <a class="card card-lang" href="https://playlearn365.github.io/pizza-sister/" target="_blank">
+        <div class="card-bar"></div>
+        <img class="card-img" src="images/pizza-sister.png" alt="Pizza姊姊說故事"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="card-img-placeholder" style="display:none">🍕<span class="ph-hint">images/pizza-sister.png</span></div>
+        <div class="card-body">
+          <div class="card-top-row"><div class="card-name">🍕 Pizza姊姊說故事</div><span class="card-badge">語文</span></div>
+          <div class="card-desc">
+            <div class="desc-row"><span class="desc-label">📅 年齡</span><span>3–6 歲</span></div>
+            <div class="desc-row"><span class="desc-label">🎮 玩法</span><span>聆聽 Pizza 姊姊生動說故事，配合圖片理解故事情節</span></div>
+            <div class="desc-row"><span class="desc-label">🎯 目標</span><span>增進閱讀理解、故事結構感知與語音敏感度</span></div>
+          </div>
+          <div class="card-btn">▶ 開始遊戲</div>
+        </div>
+      </a>
+
+      <a class="card card-lang" href="https://playlearn365.github.io/Pure-BoPo/" target="_blank">
+        <div class="card-bar"></div>
+        <img class="card-img" src="images/Pure-BoPo.png" alt="注音轉盤遊戲"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="card-img-placeholder" style="display:none">🔡<span class="ph-hint">images/Pure-BoPo.png</span></div>
+        <div class="card-body">
+          <div class="card-top-row"><div class="card-name">🔡 注音轉盤遊戲</div><span class="card-badge">語文</span></div>
+          <div class="card-desc">
+            <div class="desc-row"><span class="desc-label">📅 年齡</span><span>5–7 歲</span></div>
+            <div class="desc-row"><span class="desc-label">🎮 玩法</span><span>轉動注音轉盤，認讀並拼出正確注音符號組合</span></div>
+            <div class="desc-row"><span class="desc-label">🎯 目標</span><span>熟悉注音符號，建立拼音概念，提升語音辨別能力</span></div>
+          </div>
+          <div class="card-btn">▶ 開始遊戲</div>
+        </div>
+      </a>
+
+      <a class="card card-lang" href="https://playlearn365.github.io/word-fishing-game/" target="_blank">
+        <div class="card-bar"></div>
+        <img class="card-img" src="images/word-fishing-game.png" alt="天才小釣手"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="card-img-placeholder" style="display:none">🎣<span class="ph-hint">images/word-fishing-game.png</span></div>
+        <div class="card-body">
+          <div class="card-top-row"><div class="card-name">🎣 天才小釣手</div><span class="card-badge">語文</span></div>
+          <div class="card-desc">
+            <div class="desc-row"><span class="desc-label">📅 年齡</span><span>4–7 歲</span></div>
+            <div class="desc-row"><span class="desc-label">🎮 玩法</span><span>用釣竿釣起水中的字卡，辨認並讀出正確的字或詞</span></div>
+            <div class="desc-row"><span class="desc-label">🎯 目標</span><span>趣味識字、強化字形記憶，增加學習動機</span></div>
+          </div>
+          <div class="card-btn">▶ 開始遊戲</div>
+        </div>
+      </a>
+
+      <a class="card card-lang" href="https://playlearn365.github.io/Squirrel-Card-Hunt/" target="_blank">
+        <div class="card-bar"></div>
+        <img class="card-img" src="images/Squirrel-Card-Hunt.png" alt="幼兒生字尋寶遊戲"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="card-img-placeholder" style="display:none">🐿️<span class="ph-hint">images/Squirrel-Card-Hunt.png</span></div>
+        <div class="card-body">
+          <div class="card-top-row"><div class="card-name">🐿️ 幼兒生字尋寶遊戲</div><span class="card-badge">語文</span></div>
+          <div class="card-desc">
+            <div class="desc-row"><span class="desc-label">📅 年齡</span><span>4–6 歲</span></div>
+            <div class="desc-row"><span class="desc-label">🎮 玩法</span><span>跟著松鼠尋找藏在地圖中的字卡，找到就大聲唸出來</span></div>
+            <div class="desc-row"><span class="desc-label">🎯 目標</span><span>在遊戲情境中自然習得生字，提升識字廣度</span></div>
+          </div>
+          <div class="card-btn">▶ 開始遊戲</div>
+        </div>
+      </a>
+
+      <a class="card card-lang" href="https://playlearn365.github.io/Squirrel-Card-Hunt/" target="_blank">
+        <div class="card-bar"></div>
+        <img class="card-img" src="images/Squirrel-Card-Hunt-2.png" alt="松鼠找字卡"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="card-img-placeholder" style="display:none">🃏<span class="ph-hint">images/Squirrel-Card-Hunt-2.png</span></div>
+        <div class="card-body">
+          <div class="card-top-row"><div class="card-name">🃏 松鼠找字卡</div><span class="card-badge">語文</span></div>
+          <div class="card-desc">
+            <div class="desc-row"><span class="desc-label">📅 年齡</span><span>4–6 歲</span></div>
+            <div class="desc-row"><span class="desc-label">🎮 玩法</span><span>從多張字卡中快速找出老師指定的字，訓練認字速度</span></div>
+            <div class="desc-row"><span class="desc-label">🎯 目標</span><span>鞏固字形辨識，強化視覺搜尋能力與注意力集中</span></div>
+          </div>
+          <div class="card-btn">▶ 開始遊戲</div>
+        </div>
+      </a>
+
+      <a class="card card-lang" href="https://playlearn365.github.io/chengyu-snake/" target="_blank">
+        <div class="card-bar"></div>
+        <img class="card-img" src="images/chengyu-snake.png" alt="成語貪吃蛇"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="card-img-placeholder" style="display:none">🐍<span class="ph-hint">images/chengyu-snake.png</span></div>
+        <div class="card-body">
+          <div class="card-top-row"><div class="card-name">🐍 成語貪吃蛇</div><span class="card-badge">語文</span></div>
+          <div class="card-desc">
+            <div class="desc-row"><span class="desc-label">📅 年齡</span><span>5–8 歲</span></div>
+            <div class="desc-row"><span class="desc-label">🎮 玩法</span><span>控制小蛇依序吃下成語的四個字，完成成語就得分</span></div>
+            <div class="desc-row"><span class="desc-label">🎯 目標</span><span>學習常用成語字序，增進成語記憶與文化理解</span></div>
+          </div>
+          <div class="card-btn">▶ 開始遊戲</div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ===== 數學 ===== -->
+  <section id="sec-math">
+    <div class="section-header">
+      <div class="section-icon section-icon-math">🔢</div>
+      <div class="section-title-wrap"><h2>數學遊戲</h2><p>數感、位值、計數，好玩又好學</p></div>
+    </div>
+    <div class="card-grid">
+
+      <a class="card card-math" href="https://playlearn365.github.io/Number-Breakdown-Puzzle/" target="_blank">
+        <div class="card-bar"></div>
+        <img class="card-img" src="images/Number-Breakdown-Puzzle.png" alt="數字分解消消樂"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="card-img-placeholder" style="display:none">🧩<span class="ph-hint">images/Number-Breakdown-Puzzle.png</span></div>
+        <div class="card-body">
+          <div class="card-top-row"><div class="card-name">🧩 數字分解消消樂</div><span class="card-badge">數學</span></div>
+          <div class="card-desc">
+            <div class="desc-row"><span class="desc-label">📅 年齡</span><span>5–7 歲</span></div>
+            <div class="desc-row"><span class="desc-label">🎮 玩法</span><span>將目標數字拆分成不同組合，消除配對正確的數字磚塊</span></div>
+            <div class="desc-row"><span class="desc-label">🎯 目標</span><span>理解數的合成與分解，建立加法基礎概念與數感</span></div>
+          </div>
+          <div class="card-btn">▶ 開始遊戲</div>
+        </div>
+      </a>
+
+      <a class="card card-math" href="https://playlearn365.github.io/golden-beads-game/" target="_blank">
+        <div class="card-bar"></div>
+        <img class="card-img" src="images/golden-beads-game.png" alt="金色數珠"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="card-img-placeholder" style="display:none">📿<span class="ph-hint">images/golden-beads-game.png</span></div>
+        <div class="card-body">
+          <div class="card-top-row"><div class="card-name">📿 金色數珠－認識位值</div><span class="card-badge">數學</span></div>
+          <div class="card-desc">
+            <div class="desc-row"><span class="desc-label">📅 年齡</span><span>5–7 歲</span></div>
+            <div class="desc-row"><span class="desc-label">🎮 玩法</span><span>用金色數珠操作個位、十位、百位，直觀感受數字大小</span></div>
+            <div class="desc-row"><span class="desc-label">🎯 目標</span><span>建立十進位概念與位值理解，為加減法奠定基礎</span></div>
+          </div>
+          <div class="card-btn">▶ 開始遊戲</div>
+        </div>
+      </a>
+
+      <a class="card card-math" href="https://playlearn365.github.io/dot-counting-game/" target="_blank">
+        <div class="card-bar"></div>
+        <img class="card-img" src="images/dot-counting-game.png" alt="數點點遊戲"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="card-img-placeholder" style="display:none">🔵<span class="ph-hint">images/dot-counting-game.png</span></div>
+        <div class="card-body">
+          <div class="card-top-row"><div class="card-name">🔵 數點點遊戲</div><span class="card-badge">數學</span></div>
+          <div class="card-desc">
+            <div class="desc-row"><span class="desc-label">📅 年齡</span><span>3–5 歲</span></div>
+            <div class="desc-row"><span class="desc-label">🎮 玩法</span><span>數出畫面中的點點數量，選出對應的數字卡片</span></div>
+            <div class="desc-row"><span class="desc-label">🎯 目標</span><span>建立一對一對應概念，培養基礎計數能力與數字認讀</span></div>
+          </div>
+          <div class="card-btn">▶ 開始遊戲</div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ===== 認知 ===== -->
+  <section id="sec-cog">
+    <div class="section-header">
+      <div class="section-icon section-icon-cog">🎨</div>
+      <div class="section-title-wrap"><h2>認知遊戲</h2><p>顏色、觀察、反應，啟發思維</p></div>
+    </div>
+    <div class="card-grid">
+
+      <a class="card card-cog" href="https://playlearn365.github.io/color-car/" target="_blank">
+        <div class="card-bar"></div>
+        <img class="card-img" src="images/color-car.png" alt="顏色賽車"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="card-img-placeholder" style="display:none">🚗<span class="ph-hint">images/color-car.png</span></div>
+        <div class="card-body">
+          <div class="card-top-row"><div class="card-name">🚗 顏色賽車</div><span class="card-badge">認知</span></div>
+          <div class="card-desc">
+            <div class="desc-row"><span class="desc-label">📅 年齡</span><span>3–5 歲</span></div>
+            <div class="desc-row"><span class="desc-label">🎮 玩法</span><span>快速辨認賽車顏色，按下對應按鈕讓車子向前衝</span></div>
+            <div class="desc-row"><span class="desc-label">🎯 目標</span><span>精熟基本顏色辨識，訓練視覺分辨與反應速度</span></div>
+          </div>
+          <div class="card-btn">▶ 開始遊戲</div>
+        </div>
+      </a>
+
+      <a class="card card-cog" href="https://playlearn365.github.io/Cute-Mole-Quiz/" target="_blank">
+        <div class="card-bar"></div>
+        <img class="card-img" src="images/Cute-Mole-Quiz.png" alt="打地鼠"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="card-img-placeholder" style="display:none">🐹<span class="ph-hint">images/Cute-Mole-Quiz.png</span></div>
+        <div class="card-body">
+          <div class="card-top-row"><div class="card-name">🐹 打地鼠</div><span class="card-badge">認知</span></div>
+          <div class="card-desc">
+            <div class="desc-row"><span class="desc-label">📅 年齡</span><span>3–6 歲</span></div>
+            <div class="desc-row"><span class="desc-label">🎮 玩法</span><span>地鼠冒出來時快速答對題目再打下去，挑戰最高分</span></div>
+            <div class="desc-row"><span class="desc-label">🎯 目標</span><span>訓練手眼協調與注意力，融入知識問答加強記憶</span></div>
+          </div>
+          <div class="card-btn">▶ 開始遊戲</div>
+        </div>
+      </a>
+
+      <a class="card card-cog" href="https://playlearn365.github.io/spot-it-kids/" target="_blank">
+        <div class="card-bar"></div>
+        <img class="card-img" src="images/spot-it-kids.png" alt="幼兒Spot It"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="card-img-placeholder" style="display:none">👀<span class="ph-hint">images/spot-it-kids.png</span></div>
+        <div class="card-body">
+          <div class="card-top-row"><div class="card-name">👀 幼兒 Spot It</div><span class="card-badge">認知</span></div>
+          <div class="card-desc">
+            <div class="desc-row"><span class="desc-label">📅 年齡</span><span>4–7 歲</span></div>
+            <div class="desc-row"><span class="desc-label">🎮 玩法</span><span>從兩張圖卡中快速找出唯一相同的圖案，先找到先贏</span></div>
+            <div class="desc-row"><span class="desc-label">🎯 目標</span><span>強化視覺掃描、圖形辨識與快速反應的認知能力</span></div>
+          </div>
+          <div class="card-btn">▶ 開始遊戲</div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ===== AI 工具 ===== -->
+  <section id="sec-ai">
+    <div class="section-header">
+      <div class="section-icon section-icon-ai">🤖</div>
+      <div class="section-title-wrap"><h2>AI 工具</h2><p>老師的智能助手，讓教學更輕鬆</p></div>
+    </div>
+    <div class="card-grid">
+
+      <a class="card card-ai" href="https://playlearn365.github.io/storyland-generator/" target="_blank">
+        <div class="card-bar"></div>
+        <img class="card-img" src="images/storyland-generator.png" alt="繪本著色話提示詞產生器"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="card-img-placeholder" style="display:none">🎨<span class="ph-hint">images/storyland-generator.png</span></div>
+        <div class="card-body">
+          <div class="card-top-row"><div class="card-name">🎨 繪本著色話提示詞產生器</div><span class="card-badge">AI工具</span></div>
+          <div class="card-desc">
+            <div class="desc-row"><span class="desc-label">👤 對象</span><span>幼兒園教師、美勞課設計者</span></div>
+            <div class="desc-row"><span class="desc-label">🎮 用法</span><span>輸入主題，AI 自動生成適合幼兒的繪本著色提示語</span></div>
+            <div class="desc-row"><span class="desc-label">🎯 功能</span><span>節省備課時間，產出創意著色活動素材與引導語</span></div>
+          </div>
+          <div class="card-btn">▶ 開啟工具</div>
+        </div>
+      </a>
+
+      <a class="card card-ai" href="https://playlearn365.github.io/say-yes-coach/" target="_blank">
+        <div class="card-bar"></div>
+        <img class="card-img" src="images/say-yes-coach.png" alt="親師溝通教練"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="card-img-placeholder" style="display:none">💬<span class="ph-hint">images/say-yes-coach.png</span></div>
+        <div class="card-body">
+          <div class="card-top-row"><div class="card-name">💬 親師溝通教練</div><span class="card-badge">AI工具</span></div>
+          <div class="card-desc">
+            <div class="desc-row"><span class="desc-label">👤 對象</span><span>幼兒園老師、園長</span></div>
+            <div class="desc-row"><span class="desc-label">🎮 用法</span><span>描述溝通情境，AI 提供溫和有效的親師對話建議</span></div>
+            <div class="desc-row"><span class="desc-label">🎯 功能</span><span>降低溝通壓力，協助老師以正向語言處理困難情境</span></div>
+          </div>
+          <div class="card-btn">▶ 開啟工具</div>
+        </div>
+      </a>
+
+      <a class="card card-ai" href="https://playlearn365.github.io/ReleaseRitual/" target="_blank">
+        <div class="card-bar"></div>
+        <img class="card-img" src="images/ReleaseRitual.png" alt="課堂照片格言播放器"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="card-img-placeholder" style="display:none">📸<span class="ph-hint">images/ReleaseRitual.png</span></div>
+        <div class="card-body">
+          <div class="card-top-row"><div class="card-name">📸 課堂照片格言播放器</div><span class="card-badge">AI工具</span></div>
+          <div class="card-desc">
+            <div class="desc-row"><span class="desc-label">👤 對象</span><span>幼兒園教師、園長</span></div>
+            <div class="desc-row"><span class="desc-label">🎮 用法</span><span>上傳課堂照片，AI 自動配上溫暖激勵的教育格言</span></div>
+            <div class="desc-row"><span class="desc-label">🎯 功能</span><span>製作班級紀錄、成果展示或家長分享的精美素材</span></div>
+          </div>
+          <div class="card-btn">▶ 開啟工具</div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>🌱 PlayLearn365 — 讓每一天都是學習的好日子</p>
+  <p style="margin-top:8px;">
+    <a href="https://github.com/playlearn365/playlearn365.github.io" target="_blank">GitHub</a>
+    　｜　為幼稚園老師 &amp; 園長設計
+  </p>
+</footer>
+
+</div>
+</body>
+</html>
