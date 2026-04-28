@@ -81,15 +81,18 @@
     .tag-cog  { background:var(--cog-light);  color:var(--cog-hue);  border:1.5px solid var(--cog-border);  }
     .tag-ai   { background:var(--ai-light);   color:var(--ai-hue);   border:1.5px solid var(--ai-border);   }
 
-    /* NOTICE */
-    .notice { max-width: 1100px; margin: 0 auto 12px; padding: 0 24px; }
-    .notice-box {
-      background: #FFFDE7; border: 1.5px dashed #FFD54F;
-      border-radius: 12px; padding: 12px 18px;
-      font-size: 0.85rem; color: #795548; font-weight: 600; line-height: 1.7;
+    /* BACK HOME */
+    .back-home {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin: 0 auto 8px; padding: 10px 22px;
+      background: var(--warm-white); border: 1.5px solid #F0E6D6;
+      border-radius: 99px; font-size: 0.9rem; font-weight: 800;
+      color: var(--text-mid); text-decoration: none;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
-    .notice-box strong { color: #E65100; }
-    .notice-box code { background:#FFF9C4; padding:1px 6px; border-radius:4px; font-size:0.82rem; }
+    .back-home:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(60,30,0,0.12); color: var(--lang-hue); }
+    .back-home-wrap { text-align: center; padding: 0 24px 4px; }
 
     /* MAIN */
     main { max-width: 1100px; margin: 0 auto; padding: 0 24px 80px; display: flex; flex-direction: column; gap: 52px; }
@@ -223,10 +226,10 @@
   </div>
 </header>
 
-<div class="notice">
-  <div class="notice-box">
-    📁 <strong>圖片上傳說明：</strong>在 GitHub repo 建立 <code>images/</code> 資料夾，將各遊戲截圖依下方檔名上傳，網頁即自動顯示。尚未上傳的會先顯示 emoji 預留位置。
-  </div>
+
+
+<div class="back-home-wrap">
+  <a class="back-home" href="index.html">← 回主頁</a>
 </div>
 
 <main>
